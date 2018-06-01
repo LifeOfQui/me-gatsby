@@ -1,0 +1,60 @@
+{
+  "assetsByChunkName": {
+    "component---src-pages-index-js": [
+      "component---src-pages-index-js-92032a0a105bb7d81d00.js",
+      "component---src-pages-index-js-92032a0a105bb7d81d00.js.map"
+    ],
+    "path---": [
+      "path----990e89b80780f4476e92.js",
+      "path----990e89b80780f4476e92.js.map"
+    ],
+    "component---src-layouts-index-js": [
+      "component---src-layouts-index-js-27ba16f143c301b8af08.js",
+      "component---src-layouts-index-js-27ba16f143c301b8af08.js.map"
+    ],
+    "component---src-pages-datenschutz-js": [
+      "component---src-pages-datenschutz-js-1844aa524533736d17a3.js",
+      "component---src-pages-datenschutz-js-1844aa524533736d17a3.js.map"
+    ],
+    "path---index": [
+      "path---index-4a1ea97658759576ebeb.js",
+      "path---index-4a1ea97658759576ebeb.js.map"
+    ],
+    "component---src-pages-404-js": [
+      "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
+      "component---src-pages-404-js-4503918ea3a16cfcdb75.js.map"
+    ],
+    "commons": [
+      "commons-a67de70b25a34ccf6735.js",
+      "build-js-styles.css",
+      "commons-a67de70b25a34ccf6735.js.map",
+      "build-js-styles.css.map"
+    ],
+    "component---src-pages-impressum-js": [
+      "component---src-pages-impressum-js-e0e2cb8bb5605a333206.js",
+      "component---src-pages-impressum-js-e0e2cb8bb5605a333206.js.map"
+    ],
+    "path---404-html": [
+      "path---404-html-a0e39f21c11f6a62c5ab.js",
+      "path---404-html-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---datenschutz": [
+      "path---datenschutz-a0e39f21c11f6a62c5ab.js",
+      "path---datenschutz-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "app": [
+      "app-d179a3c53996c776c0a7.js",
+      "build-js-styles.css",
+      "app-d179a3c53996c776c0a7.js.map",
+      "build-js-styles.css.map"
+    ],
+    "path---impressum": [
+      "path---impressum-a0e39f21c11f6a62c5ab.js",
+      "path---impressum-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---404": [
+      "path---404-a0e39f21c11f6a62c5ab.js",
+      "path---404-a0e39f21c11f6a62c5ab.js.map"
+    ]
+  }
+}
