@@ -3,10 +3,7 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import Particles from 'react-particles-js'
-import {
-  Element,
-    Link as ScrollLink
-} from 'react-scroll'
+import { Element, Link as ScrollLink } from 'react-scroll'
 
 import { particleConfig } from './particle-config'
 import './particles.css'
@@ -36,18 +33,18 @@ const HeaderWrapper = styled(Element)`
     }
   }
 
-  &:after {
-    background-image: linear-gradient(
-      to right bottom,
-      rgba(126, 213, 111, 0.6),
-      rgba(40, 180, 133, 0.6)
-    );
-    content: '';
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-  }
+  //&:after {
+  //  background-image: linear-gradient(
+  //    to right bottom,
+  //    rgba(126, 213, 111, 0.6),
+  //    rgba(40, 180, 133, 0.6)
+  //  );
+  //  content: '';
+  //  height: 100%;
+  //  width: 100%;
+  //  position: absolute;
+  //  top: 0;
+  //}
 `
 
 const HeaderContainer = styled.div`
@@ -91,7 +88,11 @@ const MainNav = styled.nav`
 
   ul {
     list-style: none;
-    display: flex;
+    display: none;
+
+    @media (min-width: 600px) {
+      display: flex;
+    }
 
     li {
       margin-right: 30px;
@@ -110,7 +111,8 @@ const MainNav = styled.nav`
         padding-bottom: 3px;
         cursor: pointer;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           border-bottom: 3px solid ${variables.primaryColor};
         }
       }
@@ -211,52 +213,52 @@ class Header extends Component {
 
               <ul>
                 <li>
-                    <ScrollLink
-                        to="anchor-home"
-                        spy={true}
-                        smooth={true}
-                        offset={-75}
-                        duration={800}
-                        activeClass="active"
-                    >
-                        Home
-                    </ScrollLink>
+                  <ScrollLink
+                    to="anchor-home"
+                    spy={true}
+                    smooth={true}
+                    offset={-75}
+                    duration={800}
+                    activeClass="active"
+                  >
+                    Home
+                  </ScrollLink>
                 </li>
                 <li>
-                    <ScrollLink
-                        to="anchor-about"
-                        spy={true}
-                        smooth={true}
-                        offset={-120}
-                        duration={800}
-                        activeClass="active"
-                    >
+                  <ScrollLink
+                    to="anchor-about"
+                    spy={true}
+                    smooth={true}
+                    offset={-120}
+                    duration={800}
+                    activeClass="active"
+                  >
                     About
-                    </ScrollLink>
+                  </ScrollLink>
                 </li>
                 <li>
-                    <ScrollLink
-                        to="anchor-spartanRaces"
-                        spy={true}
-                        smooth={true}
-                        offset={-120}
-                        duration={800}
-                        activeClass="active"
-                    >
-                        Spartan Races
-                    </ScrollLink>
+                  <ScrollLink
+                    to="anchor-spartanRaces"
+                    spy={true}
+                    smooth={true}
+                    offset={-120}
+                    duration={800}
+                    activeClass="active"
+                  >
+                    Spartan Races
+                  </ScrollLink>
                 </li>
                 <li>
-                    <ScrollLink
-                        to="anchor-travel"
-                        spy={true}
-                        smooth={true}
-                        offset={-120}
-                        duration={800}
-                        activeClass="active"
-                    >
-                        Traveling
-                    </ScrollLink>
+                  <ScrollLink
+                    to="anchor-travel"
+                    spy={true}
+                    smooth={true}
+                    offset={-120}
+                    duration={800}
+                    activeClass="active"
+                  >
+                    Traveling
+                  </ScrollLink>
                 </li>
               </ul>
             </MainNav>

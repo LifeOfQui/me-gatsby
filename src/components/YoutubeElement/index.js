@@ -1,5 +1,6 @@
 import React from 'react'
 import { Element } from 'react-scroll'
+import LazyLoad from 'react-lazyload'
 
 import { SectionHeadline } from '../Headline'
 
@@ -10,11 +11,13 @@ const YoutubeElement = () => (
       className=""
       style={{
         display: 'flex',
-        width: 800,
+        maxWidth: 800,
         height: 450,
         margin: '0 auto',
       }}
     >
+
+        <LazyLoad>
       <iframe
         width="100%"
         height="auto"
@@ -23,7 +26,9 @@ const YoutubeElement = () => (
         gesture="media"
         allow="encrypted-media"
         allowFullScreen
+        title="Urlaub Sonnenstrand"
       />
+      </LazyLoad>
     </div>
   </Element>
 )

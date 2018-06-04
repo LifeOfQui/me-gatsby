@@ -5,20 +5,35 @@ import styled from 'styled-components'
 
 import Header from '../components/Header/index'
 import './index.css'
-import Footer from "../components/Footer";
+import Footer from '../components/Footer'
 
 import pattern from './concrete_seamless.png'
 
 const SiteWrapper = styled.div`
-    background-image: url(${pattern});
+  background-image: url(${pattern});
 `
 
 const Layout = ({ children, data }) => (
   <SiteWrapper>
     <Helmet
       title={data.site.siteMetadata.title}
-      meta={[{ name: 'description', content: 'My personal website' }]}
-    />
+      meta={[
+        {
+          name: 'description',
+          content:
+            'Web Developer / Front End Developer - Personal website Quirin Koch',
+        },
+        {
+          name: 'theme-color',
+          content: '#4dc27c',
+        },
+        {
+          name: 'short_name',
+          content: 'Quirin Koch',
+        },
+      ]}
+    >
+    </Helmet>
     <Header data={data} />
     <div
       style={{
@@ -30,7 +45,7 @@ const Layout = ({ children, data }) => (
     >
       {children()}
     </div>
-      <Footer />
+    <Footer />
   </SiteWrapper>
 )
 
@@ -48,7 +63,10 @@ export const query = graphql`
       }
     }
     background: imageSharp(id: { regex: "/hero/" }) {
-      sizes(maxWidth: 1240) {
+      sizes(
+        maxWidth: 1240
+        duotone: { highlight: "#4dc27c", shadow: "#192550" }
+      ) {
         ...GatsbyImageSharpSizes_withWebp
       }
     }

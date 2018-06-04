@@ -1,10 +1,11 @@
 import React from 'react'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
+import LazyLoad from 'react-lazyload'
 import { variables } from '../../variables'
 
 import { Element } from 'react-scroll'
-import { SectionHeadline } from "../Headline";
+import { SectionHeadline } from '../Headline'
 
 const Outer = styled.div`
   max-width: 960px;
@@ -31,17 +32,19 @@ const AboutMe = ({ data }) => (
   <Element name="anchor-about">
     <SectionHeadline>About</SectionHeadline>
     <Outer>
-      <Img
-        style={{
-          borderRadius: '50%',
-          width: '200px',
-          float: 'left',
-          margin: '0 2.5em 2.5em 0',
-          shapeOutside: 'circle()',
-          border: `5px solid ${variables.secondaryColor}`,
-        }}
-        sizes={data.me.sizes}
-      />
+      <LazyLoad height={200}>
+        <Img
+          style={{
+            borderRadius: '50%',
+            width: '200px',
+            float: 'left',
+            margin: '0 2.5em 2.5em 0',
+            shapeOutside: 'circle()',
+            border: `5px solid ${variables.secondaryColor}`,
+          }}
+          sizes={data.me.sizes}
+        />
+      </LazyLoad>
       <div className="generic-content-container">
         <Headline>I'm a Front End Developer & I Build Websites</Headline>
         <p>

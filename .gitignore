@@ -28,3 +28,6 @@ nbproject
 _notes
 dwsync.xml
 *.codekit*
+
+/.idea/
+public/

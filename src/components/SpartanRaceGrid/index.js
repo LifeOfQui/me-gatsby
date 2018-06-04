@@ -1,5 +1,6 @@
 import React from 'react'
 import { Element } from 'react-scroll'
+import LazyLoad from 'react-lazyload'
 
 import hero from '../../images/grid/hero.jpg'
 import chain from '../../images/grid/chain.jpg'
@@ -18,49 +19,65 @@ const SpartanRaceGrid = () => (
     <SectionHeadline>Spartan Races</SectionHeadline>
     <div className="grid">
       <div className="area">
-        <img src={hero} alt="" />
+        <LazyLoad>
+          <img src={hero} alt="" />
+        </LazyLoad>
         <a href="#" target="_blank" className="rollover-content">
           <span>Spartan Race EM Andorra 09/2017</span>
         </a>
       </div>
       <div className="area">
-        <img src={sandbag} alt="" />
+        <LazyLoad>
+          <img src={sandbag} alt="" />
+        </LazyLoad>
         <div href="#" className="rollover-content">
           <span>Spartan Race Oberndorf 09/2016</span>
         </div>
       </div>
       <div className="area">
-        <img src={mud} alt="" />
+        <LazyLoad>
+          <img src={mud} alt="" />
+        </LazyLoad>
         <div href="#" className="rollover-content">
           Spartan Race Oberndorf 09/2017
         </div>
       </div>
       <div className="area medal">
-        <img src={emMedal} alt="" />
+        <LazyLoad>
+          <img src={emMedal} alt="" />
+        </LazyLoad>
         <div href="#" className="rollover-content">
           <span>Spartan Race EM Andorra 09/2017</span>
         </div>
       </div>
       <div className="area">
-        <img src={crawl} alt="" />
+        <LazyLoad>
+          <img src={crawl} alt="" />
+        </LazyLoad>
         <div href="#" className="rollover-content">
           Spartan Race Wien 05/2017
         </div>
       </div>
       <div className="area">
-        <img src={chain} alt="" />
+        <LazyLoad>
+          <img src={chain} alt="" />
+        </LazyLoad>
         <div href="#" className="rollover-content">
           <span>Spartan Race Oberndorf 09/2017</span>
         </div>
       </div>
       <div className="area">
-        <img src={rock} alt="" />
+        <LazyLoad>
+          <img src={rock} alt="" />
+        </LazyLoad>
         <div href="#" className="rollover-content">
           <span>Spartan Race Sparta 11/2017</span>
         </div>
       </div>
       <div className="area tall">
-        <img src={bucket} alt="" />
+        <LazyLoad>
+          <img src={bucket} alt="" />
+        </LazyLoad>
         <div href="#" className="rollover-content">
           Spartan Race Wien 05/2017
         </div>
