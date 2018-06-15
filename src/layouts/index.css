@@ -6,7 +6,9 @@
   --secondaryColor: #ffef05;
 }
 
-*, ::after, ::before {
+*,
+::after,
+::before {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -395,6 +397,10 @@ template {
   opacity: 1;
 }
 
+#downButton.hide {
+  display: none;
+}
+
 @keyframes bounce {
   0%,
   20%,
@@ -477,4 +483,26 @@ template {
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 300px;
+  }
+}
+
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+.hide {
+  display: none !important
 }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
-import Header from '../components/Header/index'
 import './index.css'
 import Footer from '../components/Footer'
 
@@ -32,19 +31,8 @@ const Layout = ({ children, data }) => (
           content: 'Quirin Koch',
         },
       ]}
-    >
-    </Helmet>
-    <Header data={data} />
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 1250,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-      }}
-    >
-      {children()}
-    </div>
+    />
+    <div>{children()}</div>
     <Footer />
   </SiteWrapper>
 )
@@ -60,14 +48,6 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-      }
-    }
-    background: imageSharp(id: { regex: "/hero/" }) {
-      sizes(
-        maxWidth: 1240
-        duotone: { highlight: "#4dc27c", shadow: "#192550" }
-      ) {
-        ...GatsbyImageSharpSizes_withWebp
       }
     }
   }

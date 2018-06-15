@@ -1,27 +1,14 @@
 import React from 'react'
 
-import SpartanRaceGrid from '../components/SpartanRaceGrid'
+import Header from '../components/Header'
 import PageSection from '../components/PageSection'
 import AboutMe from '../components/Aboutme'
-import HighlightElement from "../components/HighlightElement";
-import YoutubeElement from "../components/YoutubeElement";
 
 const IndexPage = ({ data }) => (
   <div>
+    <Header data={data} active={'Home'} showAll={true} />
     <PageSection>
       <AboutMe data={data} />
-    </PageSection>
-
-    <PageSection>
-      <SpartanRaceGrid />
-    </PageSection>
-
-      <PageSection>
-          <YoutubeElement />
-      </PageSection>
-
-    <PageSection>
-      <HighlightElement data={data} />
     </PageSection>
   </div>
 )
@@ -35,22 +22,15 @@ export const query = graphql`
         title
       }
     }
+    background: imageSharp(id: { regex: "/hero/" }) {
+      sizes(
+        maxWidth: 1240
+        duotone: { highlight: "#4dc27c", shadow: "#000000" }
+      ) {
+        ...GatsbyImageSharpSizes_withWebp
+      }
+    }
     me: imageSharp(id: { regex: "/about-me--me/" }) {
-      sizes(maxWidth: 500) {
-        ...GatsbyImageSharpSizes
-      }
-    }
-    andorraStart: imageSharp(id: { regex: "/andorra-start/" }) {
-      sizes(maxWidth: 500) {
-        ...GatsbyImageSharpSizes
-      }
-    }
-    andorraFinish: imageSharp(id: { regex: "/andorra-finish/" }) {
-      sizes(maxWidth: 500) {
-        ...GatsbyImageSharpSizes
-      }
-    }
-    andorraSnow: imageSharp(id: { regex: "/andorra-snow/" }) {
       sizes(maxWidth: 500) {
         ...GatsbyImageSharpSizes
       }

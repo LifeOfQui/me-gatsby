@@ -5,7 +5,7 @@ const PageSectionDiv = styled.section`
   margin: 0 auto;
   width: 100%;
   max-width: 1250px;
-  padding: 4.5rem 0;
+  padding: 4.5rem 1.0875rem;
 `;
 
 const PageSection = props => (

@@ -1,17 +1,14 @@
 import React from 'react'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
-import LazyLoad from 'react-lazyload'
 import { variables } from '../../variables'
 
 import { Element } from 'react-scroll'
 import { SectionHeadline } from '../Headline'
 
 const Outer = styled.div`
-  max-width: 960px;
   margin: 0 auto;
   padding: 2.5rem;
-  background-color: ${variables.primaryColor};
 
   p {
     font-size: 17px;
@@ -21,32 +18,43 @@ const Outer = styled.div`
 `
 
 const Headline = styled.h3`
-  color: ${variables.secondaryColor};
+  color: #333;
   font-size: 28px;
   margin-top: 0;
   text-decoration: underline;
   text-decoration-skip: ink;
 `
 
+const CustomSectionHeadline = styled(SectionHeadline)`
+  @media (min-width: 600px) {
+    position: absolute;
+    z-index: 2;
+    left: 159px;
+    top: -27px;
+    font-size: 6rem;
+    margin: 0;
+  }
+`
+
+const MeImg = styled(Img)`
+  width: 200px;
+  float: none;
+  margin: 0 2.5em 1.5em 0;
+  border: 5px solid ${variables.secondaryColor};
+
+  @media (min-width: 600px) {
+    float: left;
+  }
+`
 const AboutMe = ({ data }) => (
-  <Element name="anchor-about">
-    <SectionHeadline>About</SectionHeadline>
+  <Element name="anchor-about" style={{ position: 'relative' }}>
+    <CustomSectionHeadline>About</CustomSectionHeadline>
     <Outer>
-      <LazyLoad height={200}>
-        <Img
-          style={{
-            borderRadius: '50%',
-            width: '200px',
-            float: 'left',
-            margin: '0 2.5em 2.5em 0',
-            shapeOutside: 'circle()',
-            border: `5px solid ${variables.secondaryColor}`,
-          }}
-          sizes={data.me.sizes}
-        />
-      </LazyLoad>
+      <MeImg sizes={data.me.sizes} />
       <div className="generic-content-container">
-        <Headline>I'm a Front End Developer & I Build Websites</Headline>
+        <Headline style={{ marginTop: 50 }}>
+          I'm a Front End Developer & I Build Websites
+        </Headline>
         <p>
           I code beautifully simple things, and I ❤️ what I do.
           <br />

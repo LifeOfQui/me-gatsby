@@ -2,16 +2,13 @@ import React, { Component } from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
-import Particles from 'react-particles-js'
 import { Element, Link as ScrollLink } from 'react-scroll'
-
-import { particleConfig } from './particle-config'
 import './particles.css'
 import '../../variables.js'
 import { variables } from '../../variables'
 
 const HeaderWrapper = styled(Element)`
-  background: #524763;
+  background: transparent;
   margin-bottom: 1.45rem;
   overflow: hidden;
   position: relative;
@@ -31,6 +28,10 @@ const HeaderWrapper = styled(Element)`
     @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
       clip-path: none;
     }
+  }
+
+  &.small {
+    height: 470px;
   }
 
   //&:after {
@@ -86,22 +87,128 @@ const MainNav = styled.nav`
     }
   }
 
-  ul {
-    list-style: none;
-    display: none;
+  .mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    cursor: pointer;
+    width: 35px;
 
     @media (min-width: 600px) {
       display: flex;
     }
 
+    div {
+      height: 3px;
+      background-color: black;
+      margin: 3px 0;
+      border-radius: 24px;
+      transition: 0.3s;
+
+      &.one {
+        width: 35px;
+      }
+
+      &.two {
+        width: 20px;
+      }
+
+      &.three {
+        width: 25px;
+      }
+    }
+
+    &:hover {
+      .one {
+        animation: menu 0.8s ease-in-out forwards;
+      }
+      .two {
+        animation: menu 0.8s 0.15s ease-in-out forwards;
+      }
+      .three {
+        animation: menu 0.8s 0.3s ease-in-out forwards;
+      }
+    }
+  }
+
+  @keyframes menu {
+    40% {
+      width: 0;
+    }
+    90% {
+      width: 42px;
+    }
+    100% {
+      width: 35px;
+    }
+  }
+
+  .closeButton {
+    width: 32px;
+    height: 35px;
+    padding: 4px;
+    background: ${variables.primaryColor};
+    position: absolute;
+    top: 9px;
+    right: 19px;
+    transition: transform 150ms ease-in-out;
+    box-shadow: 0 10px 10px -4px rgba(0, 0, 0, 0.2);
+    animation: bounce-out 400ms ease-in-out;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transform: scaleX(1.2);
+    cursor: pointer;
+    z-index: 9;
+
+    &.active {
+      display: flex;
+    }
+
+    &:hover {
+      transform: scaleY(1.1) scaleX(1.3);
+    }
+  }
+
+  .flyOutMenu {
+    list-style: none;
+    display: none;
+    position: absolute;
+
+    &.active {
+      display: flex;
+      flex-direction: column;
+      background: white;
+      position: absolute;
+      top: 11px;
+      right: 35px;
+      padding: 16px 30px;
+      transform-origin: top right;
+      box-shadow: 0 24px 16px -15px rgba(0, 0, 0, 0.1),
+        0 2px 26px rgba(0, 0, 0, 0.16);
+      transform: scale(0);
+      animation: bounce-out 400ms ease-in-out 100ms forwards;
+      text-align: center;
+    }
+
+    @keyframes bounce-out {
+      0% {
+        transform: scale(0);
+      }
+      75% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
     li {
-      margin-right: 30px;
+      padding: 17px 0;
       text-transform: uppercase;
 
       &:last-child {
-        @media (min-width: 1280px) {
-          margin-right: 0;
-        }
+        margin-bottom: 0;
       }
 
       a {
@@ -110,10 +217,27 @@ const MainNav = styled.nav`
         border-bottom: 3px solid transparent;
         padding-bottom: 3px;
         cursor: pointer;
+        position: relative;
 
-        &:hover,
-        &.active {
-          border-bottom: 3px solid ${variables.primaryColor};
+        &:before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 3px;
+          bottom: 0;
+          left: 0;
+          background-color: ${variables.primaryColor};
+          visibility: hidden;
+          transform: scaleX(0);
+          transition: all 0.3s ease-in-out 0s;
+          transform-origin: left;
+        }
+
+        &:hover:before,
+        &.active:before {
+          visibility: visible;
+          -webkit-transform: scaleX(1);
+          transform: scaleX(1);
         }
       }
     }
@@ -129,17 +253,23 @@ const TextWrapper = styled.div`
     display: block;
   }
 
+  &.hide {
+    display: none;
+  }
+
   .header__title {
     color: white;
     font-weight: 300;
     display: inline-block;
     font-size: 3rem;
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    position: relative;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    text-align: center;
+    white-space: nowrap;
 
-    &.header__title--bold {
-      font-weight: 500;
+    &.typewriter {
+      animation: blinkTextCursor 500ms steps(40) infinite normal;
     }
   }
 
@@ -147,16 +277,15 @@ const TextWrapper = styled.div`
     color: white;
     display: flex;
     justify-content: space-between;
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1;
     font-weight: 300;
-    animation: moveInRight 1s ease-out;
     border: 0;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
     padding: 10px 0;
 
-    span {
+    span:not(.ltr) {
       padding: 0 10px;
 
       &:first-child {
@@ -168,42 +297,133 @@ const TextWrapper = styled.div`
       }
     }
   }
-
-  span {
-    transition: all 0.3s ease-out;
-
-    &:hover,
-    &.rubberband {
-      animation-name: rubberBand;
-      color: #ffef05;
-    }
-  }
 `
 
 class Header extends Component {
   state = {
     animate: false,
   }
+  i = 0
+  text = "Hi! I'm Quirin."
+
+  writeText = () => {
+    if (this.i < this.text.length) {
+      document.querySelector('.header__title').innerHTML += this.text.charAt(
+        this.i
+      )
+      this.i++
+      setTimeout(this.writeText, 100)
+    }
+  }
+
+  toggleMenu = () => {
+    document.querySelector('.flyOutMenu').classList.toggle('active')
+    if (document.querySelector('.flyOutMenu').classList.contains('active')) {
+      document.querySelector('.closeButton').classList.add('active')
+    } else {
+      document.querySelector('.closeButton').classList.remove('active')
+    }
+  }
+
+  randomGenerator() {
+    const randomNumber = document.querySelectorAll('.nbr')
+    const timer = 15
+    let data = 0
+    let maxWert = 0
+
+    const letters = [
+      'F',
+      'r',
+      'o',
+      'n',
+      't',
+      'E',
+      'n',
+      'd',
+      'D',
+      'e',
+      'v',
+      'e',
+      'l',
+      'o',
+      'p',
+      'e',
+      'r',
+      'S',
+      'p',
+      'o',
+      'r',
+      't',
+      's',
+      'e',
+      'n',
+      't',
+      'h',
+      'u',
+      's',
+      'i',
+      'a',
+      's',
+      't',
+    ]
+
+    randomNumber.forEach(element => {
+      // wie oft es wechseln soll bis es zu Lettern wird
+      let change = Math.round(Math.random() * 100)
+      maxWert = Math.max(change, maxWert)
+      element.setAttribute('data-change', `${change}`)
+    })
+
+    const it = setInterval(function() {
+      let ele = randomNumber[Math.round(Math.random() * randomNumber.length)]
+
+      if (ele && ele.classList.contains('nbr')) {
+        ele.setAttribute('data-number', `${data}`)
+        ele.textContent = Math.round(Math.random() * 9)
+      }
+
+      data++
+
+      randomNumber.forEach((element, idx) => {
+        // hier dann durch letter ersetzen
+        if (
+          parseInt(element.getAttribute('data-number')) >
+          parseInt(element.getAttribute('data-change'))
+        ) {
+          element.innerHTML = letters[idx]
+          element.classList.remove('nbr')
+        }
+      })
+
+      if (document.querySelectorAll('.nbr').length === 0) {
+        clearInterval(it)
+      }
+    }, timer)
+  }
 
   componentDidMount() {
     const ANIMATION_TIMEOUT = 450
 
-    setTimeout(() => {
-      // Added two nested requestAnimationFrames
-      requestAnimationFrame(() => {
-        // Firefox will sometimes merge changes that happened here
+    if (this.props.showAll) {
+      setTimeout(() => {
+        // Added two nested requestAnimationFrames
         requestAnimationFrame(() => {
-          this.setState({ animate: true })
+          // Firefox will sometimes merge changes that happened here
+          requestAnimationFrame(() => {
+            this.setState({ animate: true })
+            this.writeText()
+            this.randomGenerator()
+          })
         })
-      })
-    }, ANIMATION_TIMEOUT)
+      }, ANIMATION_TIMEOUT)
+    }
   }
 
   render() {
-    const { background } = this.props.data
+    const { background, backgroundSmall } = this.props.data
+    const { active, showAll } = this.props
     return (
-      <HeaderWrapper name="anchor-home">
-        <Particles className="particles" params={particleConfig} />
+      <HeaderWrapper name="anchor-home" className={showAll ? '' : 'small'}>
         <HeaderContainer>
           <NavContainer>
             <MainNav>
@@ -211,84 +431,88 @@ class Header extends Component {
                 <span className="logo-text">QK</span>
               </a>
 
-              <ul>
+              <div className="mobile" onClick={this.toggleMenu}>
+                <div className="one" />
+                <div className="two" />
+                <div className="three" />
+              </div>
+
+              <div className="closeButton" onClick={this.toggleMenu}>
+                X
+              </div>
+
+              <ul className="flyOutMenu">
                 <li>
-                  <ScrollLink
-                    to="anchor-home"
-                    spy={true}
-                    smooth={true}
-                    offset={-75}
-                    duration={800}
-                    activeClass="active"
-                  >
+                  <Link to="/" className={active === 'Home' ? 'active' : ''}>
                     Home
-                  </ScrollLink>
+                  </Link>
                 </li>
                 <li>
-                  <ScrollLink
-                    to="anchor-about"
-                    spy={true}
-                    smooth={true}
-                    offset={-120}
-                    duration={800}
-                    activeClass="active"
-                  >
-                    About
-                  </ScrollLink>
-                </li>
-                <li>
-                  <ScrollLink
-                    to="anchor-spartanRaces"
-                    spy={true}
-                    smooth={true}
-                    offset={-120}
-                    duration={800}
-                    activeClass="active"
+                  <Link
+                    to="/spartan-races"
+                    className={active === 'SpartanRace' ? 'active' : ''}
                   >
                     Spartan Races
-                  </ScrollLink>
+                  </Link>
                 </li>
                 <li>
-                  <ScrollLink
-                    to="anchor-travel"
-                    spy={true}
-                    smooth={true}
-                    offset={-120}
-                    duration={800}
-                    activeClass="active"
+                  <Link
+                    to="/travel"
+                    className={active === 'Travel' ? 'active' : ''}
                   >
-                    Traveling
-                  </ScrollLink>
+                    Travel
+                  </Link>
                 </li>
               </ul>
             </MainNav>
           </NavContainer>
-          <TextWrapper>
+          <TextWrapper className={showAll ? '' : 'hide'}>
             <div>
-              <span className="header__title" style={{ marginRight: 10 }}>
-                Hi!
-              </span>
-
               <span
-                className="header__title header__title--bold"
-                style={{ marginRight: 10 }}
-              >
-                I'm
-              </span>
-              <span
-                className={`header__title header__title--bold ${
-                  this.state.animate ? 'rubberband' : ''
+                className={`header__title ${
+                  this.state.animate ? 'typewriter' : ''
                 }`}
-                style={{ color: '#FFEF05' }}
-              >
-                Quirin.
-              </span>
+              />
             </div>
 
             <div className="header__subtitle">
-              <span>Front End Developer</span>
-              &amp;
-              <span>Sports enthusiast</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="ltr">&nbsp;</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="ltr">&nbsp;</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span>&amp;</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="ltr">&nbsp;</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
+              <span className="nbr ltr">{Math.round(Math.random() * 9)}</span>
             </div>
           </TextWrapper>
           <ScrollLink
@@ -297,6 +521,7 @@ class Header extends Component {
             smooth={true}
             offset={-40}
             duration={800}
+            className={showAll ? '' : 'hide'}
           />
         </HeaderContainer>
         <Img
@@ -307,7 +532,7 @@ class Header extends Component {
             width: '100%',
             height: '100%',
           }}
-          sizes={background.sizes}
+          sizes={showAll ? background.sizes : backgroundSmall.sizes}
         />
         <Element
           name="afterHeader"
