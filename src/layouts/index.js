@@ -31,7 +31,9 @@ const Layout = ({ children, data }) => (
           content: 'Quirin Koch',
         },
       ]}
-    />
+    >
+        <html lang="en" />
+    </Helmet>
     <div>{children()}</div>
     <Footer />
   </SiteWrapper>

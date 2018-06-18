@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import styled from 'styled-components'
 import { variables } from '../../variables'
@@ -9,6 +10,11 @@ import { SectionHeadline } from '../Headline'
 const Outer = styled.div`
   margin: 0 auto;
   padding: 2.5rem;
+  text-align: center;
+  
+  @media (min-width: 600px) {
+    text-align:left;
+  }
 
   p {
     font-size: 17px;
@@ -39,11 +45,12 @@ const CustomSectionHeadline = styled(SectionHeadline)`
 const MeImg = styled(Img)`
   width: 200px;
   float: none;
-  margin: 0 2.5em 1.5em 0;
+  margin: auto;
   border: 5px solid ${variables.secondaryColor};
-
+  
   @media (min-width: 600px) {
     float: left;
+    margin: 0 2.5em 1.5em 0;
   }
 `
 const AboutMe = ({ data }) => (
@@ -62,8 +69,8 @@ const AboutMe = ({ data }) => (
           led me to specialize in frontend development.
         </p>
         <p>
-          When I'm not pushing pixels, you'll find me either spending time with
-          my wife 👩🏽 and son 👶🏼 or train for one of my sports.
+          When I'm not pushing pixels, I either spend time with my wife 👩🏽 and son 👶🏼 at home or <Link className="linkTo" to="/travel">travel</Link> with them.
+            In my spare time I train for <Link className="linkTo" to="/spartan-races">Spartan Races</Link>.
         </p>
       </div>
     </Outer>
